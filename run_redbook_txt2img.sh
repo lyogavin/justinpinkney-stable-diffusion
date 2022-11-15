@@ -61,10 +61,10 @@ data:
       target: ldm.data.simple.TextOnly
       params:
         captions:
-        - "A pokemon with green eyes, large wings, and a hat"
-        - "A cute bunny rabbit"
-        - "Yoda"
-        - "An epic landscape photo of a mountain"
+        - "Matcha cheese milk cover"
+        - "The baby's favorite Friso Friso Milk Powder"
+        - "Two dogs"
+        - "YulinJewelry"
         output_size: 512
         n_gpus: 2 # small hack to make sure we see all our samples
 EOT
