@@ -47,16 +47,7 @@ data:
     train:
       target: ldm.data.simple.hf_dataset
       params:
-        name: /home/ubuntu/cloudfs/ghost_data/newred_redbook_link_download/txt2image_dataset
-        image_transforms:
-        - target: torchvision.transforms.Resize
-          params:
-            size: 512
-            interpolation: 3
-        - target: torchvision.transforms.RandomCrop
-          params:
-            size: 512
-        - target: torchvision.transforms.RandomHorizontalFlip
+        name: /home/ubuntu/cloudfs/ghost_data/newred_redbook_link_download/txt2image_dataset_sim_filtered_1668610069
     validation:
       target: ldm.data.simple.TextOnly
       params:
@@ -67,13 +58,16 @@ data:
         - "YulinJewelry"
         output_size: 512
         n_gpus: 2 # small hack to make sure we see all our samples
+lightning:
+  modelcheckpoint:
+    every_n_train_steps: 100
 EOT
 
 #BATCH_SIZE=4
 N_GPUS=8
 #ACCUMULATE_BATCHES=1
 TRAIN_NAME=finetune_redbook_txt2img
-gpu_list=0,1,2,3,4,5,6,7
+gpu_list=0,1,2,3
 
 ckpt_path=/home/ubuntu/cloudfs/saved_models/models--CompVis--stable-diffusion-v-1-4-original/snapshots/f0bb45b49990512c454cf2c5670b0952ef2f9c71/sd-v1-4-full-ema.ckpt
 
@@ -86,7 +80,7 @@ python main.py \
     --gpus $gpu_list \
     --logdir LOGS_DIR \
     --name "$TRAIN_NAME"\
-    --scale_lr true \
+    --scale_lr True \
     --num_nodes 1 \
     --check_val_every_n_epoch 10 \
     --finetune_from $ckpt_path \
