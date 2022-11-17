@@ -382,8 +382,12 @@ class DDPM(pl.LightningModule):
 
     def get_input(self, batch, k):
         x = batch[k]
-        if len(x.shape) == 3:
-            x = x[..., None]
+        try:
+            if len(x.shape) == 3:
+                x = x[..., None]
+        except AttributeError as ae:
+            print(f"error: {ae}: {x} - {batch} - {k}")
+            raise ae
         x = rearrange(x, 'b h w c -> b c h w')
         x = x.to(memory_format=torch.contiguous_format).float()
         return x
