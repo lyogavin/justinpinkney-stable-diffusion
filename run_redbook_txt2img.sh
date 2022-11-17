@@ -71,7 +71,7 @@ lightning:
 
   modelcheckpoint:
     params:
-      every_n_train_steps: 100
+      every_n_train_steps: 2000
       save_top_k: -1
       monitor: null
 
@@ -96,7 +96,7 @@ lightning:
   trainer:
     benchmark: True
     num_sanity_val_steps: 0
-    accumulate_grad_batches: 1
+    accumulate_grad_batches: 4
 model:
   base_learning_rate: 1.0e-04
   target: ldm.models.diffusion.ddpm.LatentDiffusion
