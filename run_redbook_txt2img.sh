@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # ref: https://github.com/LambdaLabsML/examples/blob/main/stable-diffusion-finetuning/pokemon_finetune.ipynb
 # ref: https://lambdalabs.com/blog/how-to-fine-tune-stable-diffusion-how-we-made-the-text-to-pokemon-model-at-lambda
 # ref: https://github.com/LambdaLabsML/examples/tree/main/stable-diffusion-finetuning
@@ -15,7 +14,7 @@ echo "START TIME: $(date)"
 
 ROOT_DIR=/home/ubuntu/cloudfs/saved_models/stable_diffusion/finetune_redbook_txt2img/
 
-if [ ! -d ${ROOT_DIR} ];then
+if [ ! -d ${ROOT_DIR} ]; then
   mkdir -p ${ROOT_DIR}
   echo ${ROOT_DIR} created!!!!!!!!!!!!!!
 else
@@ -24,20 +23,18 @@ fi
 
 LOGS_DIR=/home/ubuntu/cloudfs/saved_models/stable_diffusion/finetune_redbook_txt2img/logs
 
-if [ ! -d ${LOGS_DIR} ];then
+if [ ! -d ${LOGS_DIR} ]; then
   mkdir -p ${LOGS_DIR}
   echo ${LOGS_DIR} created!!!!!!!!!!!!!!
 else
   echo ${LOGS_DIR} exist!!!!!!!!!!!!!!!
 fi
 
-
 config_yaml="$ROOT_DIR/base_config.yaml"
-
 
 # dataset gen'd by ghostai_training/ocr_title_to_image/gen_data.ipynb
 # from :https://github.com/invoke-ai/InvokeAI/blob/main/configs/stable-diffusion/v1-finetune.yaml
-cat <<EOT > $config_yaml
+cat <<EOT >$config_yaml
 data:
   target: main.DataModuleFromConfig
   params:
@@ -69,7 +66,10 @@ N_GPUS=8
 TRAIN_NAME=finetune_redbook_txt2img
 gpu_list=0,1,2,3
 
-ckpt_path=/home/ubuntu/cloudfs/saved_models/models--CompVis--stable-diffusion-v-1-4-original/snapshots/f0bb45b49990512c454cf2c5670b0952ef2f9c71/sd-v1-4-full-ema.ckpt
+# following: https://github.com/lyogavin/justinpinkney-stable-diffusion
+#curl -L -x socks5h://localhost:8123 https://huggingface.co/lambdalabs/stable-diffusion-image-conditioned/resolve/main/sd-clip-vit-l14-img-embed_ema_only.ckpt -o ../saved_models/ldm/stable-diffusion-v1/sd-clip-vit-l14-img-embed_ema_only.ckpt
+
+ckpt_path=/home/ubuntu/cloudfs/saved_models/ldm/stable-diffusion-v1/sd-clip-vit-l14-img-embed_ema_only.ckpt
 
 # testing setup
 #    --every_n_train_steps 100 \
@@ -78,8 +78,7 @@ export CMD=" main.py \
     --base $config_yaml \
     --gpus $gpu_list \
     --logdir LOGS_DIR \
-    --name $TRAIN_NAME\
-    --scale_lr True \
+    --name $TRAIN_NAME    --scale_lr True \
     --num_nodes 1 \
     --check_val_every_n_epoch 10 \
     --finetune_from $ckpt_path \
@@ -101,6 +100,6 @@ python $CMD
 #    --check_val_every_n_epoch 10 \
 #    --finetune_from $ckpt_path \
 #    --every_n_train_steps 100 \
-    #data.params.batch_size=$BATCH_SIZE \
-    #lightning.trainer.accumulate_grad_batches=$ACCUMULATE_BATCHES \
-    #data.params.validation.params.n_gpus=$N_GPUS
+#data.params.batch_size=$BATCH_SIZE \
+#lightning.trainer.accumulate_grad_batches=$ACCUMULATE_BATCHES \
+#data.params.validation.params.n_gpus=$N_GPUS
