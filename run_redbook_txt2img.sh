@@ -49,6 +49,8 @@ data:
       target: ldm.data.simple.hf_dataset
       params:
         name: /home/ubuntu/cloudfs/ghost_data/newred_redbook_link_download/txt2image_dataset_sim_scored_filtered_1668610069
+        image_column: album_image
+        text_column: text
     validation:
       target: ldm.data.simple.TextOnly
       params:
@@ -99,7 +101,7 @@ model:
     num_timesteps_cond: 1
     log_every_t: 200
     timesteps: 1000
-    first_stage_key: "album_image"
+    first_stage_key: "image"
     cond_stage_key: "text"
     image_size: 64
     channels: 4
