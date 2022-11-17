@@ -131,7 +131,11 @@ def hf_dataset(
     ):
     """Make huggingface dataset with appropriate list of transforms applied
     """
-    ds = load_dataset(name, split=split)
+    try:
+        ds = load_dataset(name, split=split)
+    except ValueError as ve:
+        print(f"value error, try load_from_disk...")
+        ds = load_dataset(name)
     image_transforms = [instantiate_from_config(tt) for tt in image_transforms]
     image_transforms.extend([transforms.ToTensor(),
                                 transforms.Lambda(lambda x: rearrange(x * 2. - 1., 'c h w -> h w c'))])
