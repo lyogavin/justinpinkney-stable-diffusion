@@ -51,6 +51,7 @@ data:
         name: /home/ubuntu/cloudfs/ghost_data/newred_redbook_link_download/txt2image_dataset_sim_scored_filtered_1668610069
         image_column: album_image
         text_column: text
+        caption_key: text
     validation:
       target: ldm.data.simple.TextOnly
       params:
