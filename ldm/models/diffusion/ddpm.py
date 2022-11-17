@@ -386,7 +386,8 @@ class DDPM(pl.LightningModule):
             if len(x.shape) == 3:
                 x = x[..., None]
         except AttributeError as ae:
-            print(f"error: {ae}: {x} - {batch} - {k}")
+            #print(f"error: {ae}: {x} - {batch} - {k}")
+            print(f"error: {ae}, self.first_stage_key: {self.first_stage_key}")
             raise ae
         x = rearrange(x, 'b h w c -> b c h w')
         x = x.to(memory_format=torch.contiguous_format).float()
