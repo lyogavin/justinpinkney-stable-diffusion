@@ -47,7 +47,7 @@ data:
     train:
       target: ldm.data.simple.hf_dataset
       params:
-        name: /home/ubuntu/cloudfs/ghost_data/newred_redbook_link_download/txt2image_dataset_sim_filtered_1668610069
+        name: /home/ubuntu/cloudfs/ghost_data/newred_redbook_link_download/txt2image_dataset_sim_scored_filtered_1668610069
     validation:
       target: ldm.data.simple.TextOnly
       params:
