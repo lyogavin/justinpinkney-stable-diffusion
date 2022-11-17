@@ -73,18 +73,34 @@ ckpt_path=/home/ubuntu/cloudfs/saved_models/models--CompVis--stable-diffusion-v-
 
 # testing setup
 #    --every_n_train_steps 100 \
-
-python main.py \
+export CMD=" main.py \
     --train \
     --base $config_yaml \
     --gpus $gpu_list \
     --logdir LOGS_DIR \
-    --name "$TRAIN_NAME"\
+    --name $TRAIN_NAME\
     --scale_lr True \
     --num_nodes 1 \
     --check_val_every_n_epoch 10 \
     --finetune_from $ckpt_path \
     --every_n_train_steps 100 \
+    "
+
+echo $CMD
+
+python $CMD
+
+#python main.py \
+#    --train \
+#    --base $config_yaml \
+#    --gpus $gpu_list \
+#    --logdir LOGS_DIR \
+#    --name "$TRAIN_NAME"\
+#    --scale_lr True \
+#    --num_nodes 1 \
+#    --check_val_every_n_epoch 10 \
+#    --finetune_from $ckpt_path \
+#    --every_n_train_steps 100 \
     #data.params.batch_size=$BATCH_SIZE \
     #lightning.trainer.accumulate_grad_batches=$ACCUMULATE_BATCHES \
     #data.params.validation.params.n_gpus=$N_GPUS
