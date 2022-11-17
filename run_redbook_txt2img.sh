@@ -42,7 +42,7 @@ cat <<EOT >$config_yaml
 data:
   target: main.DataModuleFromConfig
   params:
-    batch_size: 4
+    batch_size: 2
     num_workers: 4
     #num_val_workers: 0 # Avoid a weird val dataloader issue
     train:
@@ -188,7 +188,7 @@ export CMD=" main.py \
     --gpus $gpu_list \
     --logdir LOGS_DIR \
     --name $TRAIN_NAME    \
-    --scale_lr True \
+    --scale_lr False \
     --num_nodes 1 \
     --check_val_every_n_epoch 10 \
     --finetune_from $ckpt_path \
