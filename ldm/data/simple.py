@@ -9,7 +9,7 @@ from PIL import Image
 from torchvision import transforms
 from einops import rearrange
 from ldm.util import instantiate_from_config
-from datasets import load_dataset
+from datasets import load_dataset, load_from_disk
 
 def make_multi_folder_data(paths, caption_files=None, **kwargs):
     """Make a concat dataset from multiple folders
