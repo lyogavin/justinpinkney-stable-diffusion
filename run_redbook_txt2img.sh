@@ -52,6 +52,11 @@ data:
         image_column: album_image
         text_column: text
         caption_key: text
+        image_transforms:
+        - target: torchvision.transforms.Resize
+          params:
+            size: 512
+            interpolation: 3
     validation:
       target: ldm.data.simple.TextOnly
       params:
