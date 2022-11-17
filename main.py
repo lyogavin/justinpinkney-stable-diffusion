@@ -676,7 +676,7 @@ if __name__ == "__main__":
             if "state_dict" in old_state:
                 rank_zero_print(f"Found nested key 'state_dict' in checkpoint, loading this instead")
                 old_state = old_state["state_dict"]
-                rank_zero_print(f"state: {old_state.keys()}")
+                #rank_zero_print(f"state: {old_state.keys()}")
 
             #Check if we need to port weights from 4ch input to 8ch
             in_filters_load = old_state["model.diffusion_model.input_blocks.0.0.weight"]

@@ -51,7 +51,6 @@ data:
         name: /home/ubuntu/cloudfs/ghost_data/newred_redbook_link_download/txt2image_dataset_sim_scored_filtered_1668610069
         image_column: album_image
         text_column: text
-        caption_key: text
         image_transforms:
         - target: torchvision.transforms.Resize
           params:
@@ -108,7 +107,7 @@ model:
     log_every_t: 200
     timesteps: 1000
     first_stage_key: "image"
-    cond_stage_key: "text"
+    cond_stage_key: "txt"
     image_size: 64
     channels: 4
     cond_stage_trainable: false   # Note: different from the one we trained before
