@@ -42,7 +42,7 @@ cat <<EOT >$config_yaml
 data:
   target: main.DataModuleFromConfig
   params:
-    batch_size: 2
+    batch_size: 1
     num_workers: 4
     #num_val_workers: 0 # Avoid a weird val dataloader issue
     train:
