@@ -58,6 +58,9 @@ data:
 lightning:
   modelcheckpoint:
     every_n_train_steps: 100
+model:
+  base_learning_rate: 5.0e-05
+  target: ldm.models.diffusion.ddpm.LatentDiffusion
 EOT
 
 #BATCH_SIZE=4
