@@ -71,7 +71,7 @@ lightning:
 
   modelcheckpoint:
     params:
-      every_n_train_steps: 2000
+      every_n_train_steps: 8000
       save_top_k: -1
       monitor: null
 
@@ -170,7 +170,7 @@ model:
 EOT
 
 #BATCH_SIZE=4
-N_GPUS=8
+N_GPUS=4
 #ACCUMULATE_BATCHES=1
 TRAIN_NAME=finetune_redbook_txt2img
 gpu_list=0,1,2,3
