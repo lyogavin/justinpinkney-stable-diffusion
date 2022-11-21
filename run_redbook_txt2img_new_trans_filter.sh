@@ -48,9 +48,9 @@ data:
     train:
       target: ldm.data.simple.hf_dataset
       params:
-        name: /home/ubuntu/cloudfs/ghost_data/newred_redbook_link_download/txt2image_dataset_img_processed_tct_tras_sim_scored_filered_merged_1668610069_1669047469
+        name: /home/ubuntu/cloudfs/ghost_data/newred_redbook_link_download/txt2image_dataset_sim_scored_filtered_1668610069
         image_column: album_image
-        text_column: filterd_tct_tags
+        text_column: text
         image_transforms:
         - target: torchvision.transforms.Resize
           params:
