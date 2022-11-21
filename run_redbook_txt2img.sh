@@ -186,7 +186,7 @@ export CMD=" main.py \
     --train \
     --base $config_yaml \
     --gpus $gpu_list \
-    --logdir LOGS_DIR \
+    --logdir $LOGS_DIR \
     --name $TRAIN_NAME    \
     --scale_lr False \
     --num_nodes 1 \
