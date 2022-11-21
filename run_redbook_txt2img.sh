@@ -71,7 +71,7 @@ lightning:
 
   modelcheckpoint:
     params:
-      every_n_train_steps: 8000
+      every_n_epochs: 1 #every_n_train_steps: 8000
       save_top_k: -1
       monitor: null
 
